@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Serafin</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!-- Navigation -->
+    <string name="open">Abrir</string>
+    <string name="close">Cerrar</string>
+
+    <!-- Login Activity -->
+    <string name="login_description">Encuentra los mejores precios de los combustibles cerca de ti!</string>
+    <string name="login_login_button">Iniciar Sesion</string>
+    <string name="login_register_button">Crear Cuenta </string>
+    <string name="login_hint_username">usuario</string>
+    <string name="login_hint_password">contrasena</string>
+</resources>
