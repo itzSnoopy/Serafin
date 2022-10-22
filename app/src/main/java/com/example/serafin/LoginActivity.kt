@@ -1,6 +1,7 @@
 package com.example.serafin
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -17,7 +18,8 @@ class LoginActivity : AppCompatActivity() {
         var edtUsername = findViewById<EditText>(R.id.edtLoginUsername)
         var edtPassword = findViewById<EditText>(R.id.edtLoginPassword)
 
-        findViewById<Button>(R.id.btnLogin).setOnClickListener{
+        var btnLogin = findViewById<Button>(R.id.btnLogin)
+        btnLogin.setOnClickListener{
             val username = edtUsername.text.toString()
             val password = edtPassword.text.toString()
 
@@ -31,7 +33,8 @@ class LoginActivity : AppCompatActivity() {
             }
         };
 
-        findViewById<Button>(R.id.btnRegister).setOnClickListener{
+        var btnRegister = findViewById<Button>(R.id.btnRegister)
+        btnRegister.setOnClickListener{
             val registerActivity = Intent(this, MainActivity::class.java)
             startActivity(registerActivity)
         };

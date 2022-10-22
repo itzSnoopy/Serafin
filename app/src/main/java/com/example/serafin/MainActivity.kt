@@ -1,34 +1,39 @@
 package com.example.serafin
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
-import com.example.serafin.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.example.serafin.databinding.ActivityMainBinding
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnMapReadyCallback {
+    private lateinit var mMap: GoogleMap
+    private lateinit var binding: ActivityMainBinding
     private lateinit var toggle : ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        /*
+            Navigation Menu
+        */
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
         val navView : NavigationView = findViewById(R.id.nav_view)
-
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         navView.setNavigationItemSelectedListener{
@@ -40,6 +45,12 @@ class MainActivity : AppCompatActivity() {
 
             true
         }
+
+        /*
+            Maps Fragment
+        */
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -48,5 +59,22 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onMapReady(googleMap: GoogleMap){
+        mMap = googleMap
+
+        val startPoint = LatLng(-12.0771901,-77.0932182)
+        val gasStations : HashMap<Int, GasStation> = Constants.getKnownGasStations()
+        for (station in gasStations.values){
+            mMap.addMarker(MarkerOptions()
+                .position(station.location)
+                .title(station.name)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.gas_banner))
+            )
+        }
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(startPoint))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPoint, 13.0f))
     }
 }

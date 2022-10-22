@@ -21,4 +21,5 @@
     <string name="login_register_button">Crear Cuenta </string>
     <string name="login_hint_username">usuario</string>
     <string name="login_hint_password">contrasena</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
