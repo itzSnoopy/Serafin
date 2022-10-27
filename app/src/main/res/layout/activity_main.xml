@@ -11,27 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MainActivity"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btnGasType"
+            android:background="@drawable/round_button"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/serafin_black"
+            android:backgroundTint="@color/serafin_yellow"
+            android:layout_width="94dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="166dp"
-            android:layout_marginTop="293dp"
-            android:layout_marginEnd="166dp"
-            android:layout_marginBottom="419dp"
-            android:text="This is a test"
+            android:layout_marginBottom="59dp"
+            android:text="@string/main_btn_gastype"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </TextView>
+            tools:layout_editor_absoluteX="158dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

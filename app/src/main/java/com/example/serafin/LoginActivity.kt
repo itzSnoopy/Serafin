@@ -15,13 +15,13 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        var edtUsername = findViewById<EditText>(R.id.edtLoginUsername)
-        var edtPassword = findViewById<EditText>(R.id.edtLoginPassword)
+        // var edtUsername = findViewById<EditText>(R.id.edtLoginUsername)
+        // var edtPassword = findViewById<EditText>(R.id.edtLoginPassword)
 
         var btnLogin = findViewById<Button>(R.id.btnLogin)
         btnLogin.setOnClickListener{
-            val username = edtUsername.text.toString()
-            val password = edtPassword.text.toString()
+            val username = "user" // edtUsername.text.toString()
+            val password = "pass" // edtPassword.text.toString()
 
             if(isLoginValid(username, password)){
                 Toast.makeText(this@LoginActivity, "Welcome $username!", Toast.LENGTH_LONG).show()
@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
         var btnRegister = findViewById<Button>(R.id.btnRegister)
         btnRegister.setOnClickListener{
-            val registerActivity = Intent(this, MainActivity::class.java)
+            val registerActivity = Intent(this, RegisterActivity::class.java)
             startActivity(registerActivity)
         };
     }

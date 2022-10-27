@@ -29,22 +29,25 @@
         android:layout_marginTop="9dp"
         android:layout_marginEnd="82dp"
         android:layout_marginBottom="10dp"
+        android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/ellipse_logo"
-        android:contentDescription="@string/app_name" />
+        app:layout_constraintVertical_bias="0.37"
+        app:srcCompat="@drawable/ellipse_logo" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="135dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="135dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/car" />
@@ -54,7 +57,7 @@
         android:layout_width="335dp"
         android:layout_height="91dp"
         android:layout_marginStart="51dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="116dp"
         android:layout_marginEnd="52dp"
         android:text="@string/login_description"
         android:textAlignment="center"
@@ -64,48 +67,6 @@
         app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <EditText
-        android:id="@+id/edtLoginUsername"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="17dp"
-        android:autofillHints="emailAddress"
-        android:background="@color/serafin_yellow"
-        android:ems="10"
-        android:hint="@string/login_hint_username"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textColorHint="#1B5E20"
-        app:layout_constraintBottom_toTopOf="@+id/edtLoginPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/edtLoginPassword"
-        android:layout_width="220dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="24dp"
-        android:autofillHints=""
-        android:background="@color/serafin_yellow"
-        android:ems="10"
-        android:hint="@string/login_hint_password"
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textColorHint="#1B5E20"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnLogin"

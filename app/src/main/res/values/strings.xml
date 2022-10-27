@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Serafin</string>
     <string name="action_settings">Settings</string>
+    <string name="api_key">AIzaSyDw3xxDar__pPGHxqNi-gFKmnuhplhN53o</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -12,6 +13,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <!-- Navigation -->
+    <string name="nav_home">Hogar</string>
+    <string name="nav_settings">Configuracion</string>
+    <string name="nav_logout">Cerrar Sesion</string>
     <string name="open">Abrir</string>
     <string name="close">Cerrar</string>
 
@@ -22,4 +26,33 @@
     <string name="login_hint_username">usuario</string>
     <string name="login_hint_password">contrasena</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Register Activity -->
+    <string name="register_title_1">Cuenta</string>
+    <string name="register_title_2">Nueva</string>
+    <string name="register_label_main">"Registrate en Serafin"</string>
+    <string name="register_hint_email">Ingrese su correo electronico</string>
+    <string name="register_hint_password">Ingrese su contrasena</string>
+    <string name="register_hint_confirm_password">Confirme su contrasena</string>
+    <string name="register_submit_button">Registrar</string>
+
+    <!-- Main Activity -->
+    <string name="main_btn_gastype">DIESEL</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_register">RegisterActivity</string>
 </resources>
