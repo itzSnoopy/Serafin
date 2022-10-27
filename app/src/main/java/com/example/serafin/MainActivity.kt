@@ -10,6 +10,7 @@ import android.location.LocationRequest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -118,7 +119,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 if(location == null)
                     Toast.makeText(this, "Cannot get current location", Toast.LENGTH_SHORT).show()
                 else
-                    currentLocation = LatLng(location.latitude, location.latitude)
+                    currentLocation = LatLng(location.latitude, location.longitude)
             }
 
 
@@ -127,6 +128,14 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         */
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        /*
+            Gas Type Selection
+         */
+        val btnGas = findViewById<Button>(R.id.btnGasType)
+        btnGas.setOnClickListener {
+
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -155,7 +164,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPoint, 13.0f))
         mMap.setOnMarkerClickListener { marker ->
             var destination: LatLng = marker.position
-            var source: LatLng = LatLng(-12.0653494,-77.1192116) //currentLocation
+            var source: LatLng = currentLocation
 
             googleMap.run {
                 moveCameraOnMap(latLng = source)
