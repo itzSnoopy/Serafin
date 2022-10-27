@@ -20,20 +20,21 @@ class LoginActivity : AppCompatActivity() {
 
         var btnLogin = findViewById<Button>(R.id.btnLogin)
         btnLogin.setOnClickListener{
-            val username = "user" // edtUsername.text.toString()
+            val username = "Sandro" // edtUsername.text.toString()
             val password = "pass" // edtPassword.text.toString()
 
             if(isLoginValid(username, password)){
-                Toast.makeText(this@LoginActivity, "Welcome $username!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@LoginActivity, "Welcome back $username!", Toast.LENGTH_SHORT).show()
 
                 val mainActivity = Intent(this, MainActivity::class.java)
                 startActivity(mainActivity)
             } else {
                 Toast.makeText(this@LoginActivity, "Username or Password is incorrect.", Toast.LENGTH_LONG)
             }
-        };
+        }
 
         var btnRegister = findViewById<Button>(R.id.btnRegister)
+        btnRegister.backgroundTintList = null
         btnRegister.setOnClickListener{
             val registerActivity = Intent(this, RegisterActivity::class.java)
             startActivity(registerActivity)

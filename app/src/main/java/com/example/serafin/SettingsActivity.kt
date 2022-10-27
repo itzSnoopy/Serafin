@@ -37,6 +37,7 @@ class SettingsActivity : AppCompatActivity() {
             var newActivity: Intent? = null
 
             when(it.itemId){
+                /*
                 R.id.nav_home -> {
                     newActivity = Intent(this,MainActivity::class.java)
                     Toast.makeText(applicationContext, R.string.nav_home, Toast.LENGTH_LONG).show()
@@ -49,6 +50,7 @@ class SettingsActivity : AppCompatActivity() {
                     newActivity = Intent(this,LoginActivity::class.java)
                     Toast.makeText(applicationContext, R.string.nav_logout, Toast.LENGTH_LONG).show()
                 }
+                 */
             }
 
             if(newActivity != null){

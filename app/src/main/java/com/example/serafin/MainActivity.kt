@@ -10,7 +10,9 @@ import android.location.LocationRequest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -32,6 +34,8 @@ import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.gms.tasks.OnTokenCanceledListener
 import com.maps.route.extensions.drawRouteOnMap
 import com.maps.route.extensions.moveCameraOnMap
+import com.maps.route.model.TravelMode
+import io.reactivex.rxjava3.disposables.Disposable
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
@@ -39,6 +43,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var currentLocation: LatLng
+    private lateinit var btnBackArrow: ImageView
+    private var disposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +56,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         */
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
         val navView : NavigationView = findViewById(R.id.nav_view)
+        navView.itemIconTintList = null
         toggle = ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
@@ -59,6 +66,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             var newActivity: Intent? = null
 
             when(it.itemId){
+                /*
                 R.id.nav_home -> {
                     newActivity = Intent(this,MainActivity::class.java)
                     Toast.makeText(applicationContext, R.string.nav_home, Toast.LENGTH_LONG).show()
@@ -71,6 +79,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                     newActivity = Intent(this,LoginActivity::class.java)
                     Toast.makeText(applicationContext, R.string.nav_logout, Toast.LENGTH_LONG).show()
                 }
+                */
             }
 
             if(newActivity != null){
@@ -83,6 +92,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         /*
             GPS Location Support
         */
+        btnBackArrow = findViewById(R.id.btnMainBack)
+        btnBackArrow.setOnClickListener{
+
+        }
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -133,8 +146,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             Gas Type Selection
          */
         val btnGas = findViewById<Button>(R.id.btnGasType)
+        btnGas.backgroundTintList = null
         btnGas.setOnClickListener {
-
+            val popupIntent: Intent = Intent(this, PopupGasInfo::class.java)
+            startActivity(popupIntent)
+            btnGas.text = "90"
         }
     }
 
@@ -152,35 +168,51 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val startPoint = LatLng(-12.0771901,-77.0932182)
         val gasStations: HashMap<Int, GasStation> = Constants.getKnownGasStations()
+        var bannerIcon: Int = -1
         for (station in gasStations.values){
+
+            if(bannerIcon == -1) {
+                bannerIcon = R.drawable.gas_banner_green
+            } else {
+                when ((0..2).random()) {
+                    0 -> bannerIcon = R.drawable.gas_banner_green
+                    1 -> bannerIcon = R.drawable.gas_banner_orange
+                    2 -> bannerIcon = R.drawable.gas_banner_red
+                }
+            }
+
             mMap.addMarker(MarkerOptions()
                 .position(station.location)
                 .title(station.name)
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.gas_banner))
+                .icon(BitmapDescriptorFactory.fromResource(bannerIcon))
             )
         }
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(startPoint))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(startPoint, 13.0f))
         mMap.setOnMarkerClickListener { marker ->
+            disposable?.dispose()
             var destination: LatLng = marker.position
             var source: LatLng = currentLocation
 
             googleMap.run {
                 moveCameraOnMap(latLng = source)
 
-                drawRouteOnMap(
+                disposable = drawRouteOnMap(
                     getString(R.string.api_key),
                     source = source,
                     destination = destination,
-                    context = this@MainActivity
+                    context = this@MainActivity,
+                    travelMode = TravelMode.DRIVING
                 )
             }
 
             if (marker.isInfoWindowShown) {
                 marker.hideInfoWindow()
+                btnBackArrow.visibility = View.INVISIBLE
             } else {
-                // marker.showInfoWindow()
+                marker.showInfoWindow()
+                btnBackArrow.visibility = View.VISIBLE
             }
 
             true

@@ -39,6 +39,7 @@
 
     <!-- Main Activity -->
     <string name="main_btn_gastype">DIESEL</string>
+    <string name="popup_text">Se ha cambiado el combustible a G90</string>
 
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
